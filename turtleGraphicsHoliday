@@ -1,0 +1,103 @@
+import turtle
+import random
+
+#TODO: Turtle and canvas set up
+
+jeff = turtle.Turtle()
+
+screen = turtle.Screen()
+
+#screen set up
+screen.bgcolor(191/255, 251/255, 255/255)
+
+#turtle set up
+jeff.shape("turtle")
+jeff.color("green")
+jeff.pensize(4)
+jeff.pencolor("red")
+jeff.speed(0)
+
+#Helper funcitons
+def teleport(x, y, angle = jeff.heading()):
+    jeff.penup()
+    jeff.goto(x,y)
+    jeff.right(jeff.heading() - angle)
+    jeff.pendown()
+    
+def recolor(r,g,b):
+    jeff.color(r/255, g/255, b/255)
+
+def refill(r,g,b):
+    jeff.fillcolor(r/255, g/255, b/255)
+
+#TODO: Gingerbread house
+def gingerbreadHouse(size, x = jeff.position()[0], y=jeff.position()[1]):
+    teleport(x, y)
+    recolor(122, 53, 0)
+    refill(89, 40, 2)
+    jeff.begin_fill()
+    jeff.goto(x + size * 5, y)
+    jeff.goto(x + size * 5.5, y + size * 4.5)
+    jeff.goto(x + size * -.5, y + size * 4.5)
+    jeff.goto(x,y)
+    jeff.end_fill()
+    teleport(x, y + size * 4.5)
+    jeff.begin_fill()
+    jeff.goto(x + size * 2.5, y + size * 7)
+    jeff.goto(x + size * 5, y + size * 4.5)
+    jeff.goto(x, y + size * 4.5)
+    jeff.end_fill()
+
+#TODO: Random snowflake generation
+def snowflake(size, x = jeff.position()[0], y=jeff.position()[1]):
+    teleport(x, y, random.randrange(0,359))
+    jeff.color("white")
+    angle = 50
+    for i in range(6):
+        jeff.forward(size * 4)
+        jeff.back(size)
+        for j in range(3):
+            jeff.left(angle)
+            jeff.forward(size)
+            jeff.back(size)
+            jeff.right(angle * 2)
+            jeff.forward(size)
+            jeff.back(size)
+            jeff.left(angle)
+            jeff.back(size)
+        jeff.right(60)
+
+#TODO: Candy cane making
+def candyCane(size, x = jeff.position()[0], y=jeff.position()[1]):
+    teleport(x, y, 0)
+    
+    jeff.color("red")
+    jeff.begin_fill()
+    jeff.goto(x + size, y)
+    jeff.goto(x + size, y + size)
+    jeff.end_fill()
+    teleport(x, y + size)
+    jeff.begin_fill()
+    jeff.goto(x, y + 2 * size)
+    jeff.goto(x + size, y + 3 * size)
+    jeff.goto(x + size, y + 2 * size)
+    jeff.goto(x, y + size)
+    jeff.end_fill()
+
+    jeff.color("white")
+    jeff.begin_fill()
+    teleport(x,y)
+    jeff.goto(x, y + size)
+    jeff.goto(x + size, y + size * 2)
+    jeff.goto(x + size, y + size)
+    jeff.goto(x,y)
+    jeff.end_fill()
+    
+
+#TODO: Gingerbread man making
+#TODO: Assembly
+
+#gingerbreadHouse(50)
+#snowflake(25)
+candyCane(25)
+turtle.done()
