@@ -32,6 +32,15 @@ def refill(r,g,b):
 
 #TODO: Gingerbread house
 def gingerbreadHouse(size, x = jeff.position()[0], y=jeff.position()[1]):
+    recolor(102, 0, 0)
+    refill(133, 0, 0)
+    teleport(x + size * 3.5, y + size * 4.5, 90)
+    jeff.begin_fill()
+    for i in range(1, 5):
+        jeff.forward(size * (i % 2 + 1) )
+        jeff.right(90)
+    jeff.end_fill()
+
     teleport(x, y)
     recolor(122, 53, 0)
     refill(89, 40, 2)
@@ -47,6 +56,29 @@ def gingerbreadHouse(size, x = jeff.position()[0], y=jeff.position()[1]):
     jeff.goto(x + size * 5, y + size * 4.5)
     jeff.goto(x, y + size * 4.5)
     jeff.end_fill()
+
+    recolor(122, 0, 0)
+    refill(153, 0, 0)
+    teleport(x + size * .5, y + size * 2, 90)
+    temp = 1.5
+    for j in range(2):
+        jeff.begin_fill()
+        for i in range(1, 5):
+            jeff.forward(size * temp)
+            jeff.right(90)
+        jeff.end_fill()
+        jeff.right(90)
+        jeff.penup()
+        jeff.forward(size * temp + size)
+        jeff.pendown()
+        jeff.left(90)
+
+    recolor(122, 53, 0)
+    refill(89, 40, 2)
+    teleport(x + size * 3, y, angle = 90)
+    jeff.forward(size * 1.5)
+    jeff.circle(size * .5, 180)
+    jeff.forward(size * 1.5)
 
 #TODO: Random snowflake generation
 def snowflake(size, x = jeff.position()[0], y=jeff.position()[1]):
@@ -71,6 +103,9 @@ def snowflake(size, x = jeff.position()[0], y=jeff.position()[1]):
 def candyCane(size, x = jeff.position()[0], y=jeff.position()[1]):
     teleport(x, y, 0)
     
+    previousWidth = jeff.width()
+    jeff.width(1)
+
     jeff.color("red")
     jeff.begin_fill()
     jeff.goto(x + size, y)
@@ -83,6 +118,19 @@ def candyCane(size, x = jeff.position()[0], y=jeff.position()[1]):
     jeff.goto(x + size, y + 2 * size)
     jeff.goto(x, y + size)
     jeff.end_fill()
+    teleport(x, y + size * 3)
+    jeff.begin_fill()
+    jeff.goto(x + size, y + size * 4)
+    jeff.goto(x - .5 * size, y + 4.5 * size)
+    jeff.goto(x - .5 * size, y + 3.5 * size)
+    jeff.goto(x, y + size * 3)
+    jeff.end_fill()
+    teleport(x - size, y + 3 * size)
+    jeff.begin_fill()
+    jeff.goto(x - size * 2, y + size * 3)
+    jeff.goto(x - 1.5 * size, y + size * 4)
+    jeff.goto(x - size, y + 3 * size)
+    jeff.end_fill()
 
     jeff.color("white")
     jeff.begin_fill()
@@ -92,12 +140,102 @@ def candyCane(size, x = jeff.position()[0], y=jeff.position()[1]):
     jeff.goto(x + size, y + size)
     jeff.goto(x,y)
     jeff.end_fill()
+    teleport(x, y + 2 * size)
+    jeff.begin_fill()
+    jeff.goto(x, y + 3 * size)
+    jeff.goto(x + size, y + size * 4)
+    jeff.goto(x + size, y + size * 3)
+    jeff.goto(x, y + 2 * size)
+    jeff.end_fill()
+    teleport(x - .5 * size, y + 3.5 * size)
+    jeff.begin_fill()
+    jeff.goto(x - size, y + size * 3)
+    jeff.goto(x - 1.5 * size, y + 4 * size)
+    jeff.goto(x - .5 * size, y + 4.5 * size)
+    jeff.goto(x - .5 * size, y + 3.5 * size)
+    jeff.end_fill()
+
+    jeff.width(previousWidth)
     
-
 #TODO: Gingerbread man making
-#TODO: Assembly
+def gingerBreadMan(size, x = jeff.position()[0], y=jeff.position()[1]):
+    teleport(x, y)
+    recolor(102, 63, 0)
 
-#gingerbreadHouse(50)
-#snowflake(25)
-candyCane(25)
+    jeff.begin_fill()
+    # right leg
+    jeff.right(75)
+    jeff.forward(size)
+    jeff.left(75)
+    jeff.forward(size * .5)
+    jeff.circle(size * .25, 180)
+    jeff.forward(size * .25)
+    jeff.right(75)
+    jeff.forward(size * .6)
+    jeff.right(90-75)
+    # body
+    jeff.forward(size)
+    # right arm
+    jeff.right(90 + 75)
+    jeff.forward(.6 * size)
+    jeff.circle(size * .125, 180)
+    jeff.forward(size)
+    jeff.left(75)
+    jeff.goto(x, jeff.pos()[1])
+
+    jeff.goto(x,y)
+    # left side
+    jeff.left(75) #
+    jeff.forward(size)
+    jeff.right(75)
+    jeff.forward(size * .5)
+
+    jeff.right(90)
+    jeff.forward(size * .5)
+    jeff.left(90)
+    jeff.circle(size * .25, 180)
+    jeff.left(90)
+    jeff.forward(size * .5)
+    jeff.right(90)
+    
+    jeff.forward(size * .25)
+    jeff.left(75) #
+    jeff.forward(size * .6)
+    jeff.left(90-75) #
+    # body
+    jeff.forward(size)
+    # right arm
+    jeff.left(90 + 75) #
+    jeff.forward(.6 * size)
+
+    jeff.right(90)
+    jeff.forward(size * .25)
+    jeff.left(90)
+    jeff.circle(size * .125, 180)
+    jeff.left(90)
+    jeff.forward(size * .25)
+    jeff.right(90)
+
+    jeff.forward(size)
+    jeff.right(75)
+    jeff.goto(x, jeff.pos()[1])
+    jeff.end_fill()
+
+    # Head ------------------------------------
+    jeff.begin_fill()
+    jeff.circle(size/2.25)
+    jeff.end_fill()
+
+#TODO: Tree
+
+#TODO: Assembly
+gingerbreadHouse(50, -115, -150)
+
+candyCane(25, -150, -150)
+candyCane(25, 200, -150)
+gingerBreadMan(50, -200, -150)
+
+for i in range(7):
+    snowflake(random.randrange(10,20), random.randrange(-300, 300), random.randrange(-300, 300))
+
 turtle.done()
